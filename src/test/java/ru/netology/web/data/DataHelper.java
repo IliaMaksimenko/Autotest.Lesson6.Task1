@@ -3,6 +3,8 @@ package ru.netology.web.data;
 import com.github.javafaker.Faker;
 import lombok.Value;
 
+import java.util.Random;
+
 public class DataHelper {
 
     private DataHelper() {
@@ -10,8 +12,8 @@ public class DataHelper {
 
     @Value
     public static class AuthInfo {
-        private String login;
-        private String password;
+        String login;
+        String password;
     }
 
     public static AuthInfo getAuthInfo() {
@@ -21,23 +23,31 @@ public class DataHelper {
     @Value
     public static class VerificationCode {
 
-        private String code;
+        String code;
 
-        public static VerificationCode getVerificationCode(AuthInfo authInfo) {
+        public static VerificationCode getVerificationCode() {
             return new VerificationCode("12345");
         }
     }
 
     @Value
-    public static class TransferAmount {
+    public static class CardInfo {
 
-        private String amount;
+        String cardNumber;
+        String testId;
 
-        public static TransferAmount getAmount() {
-            Faker faker = new Faker();
-            return new TransferAmount(String.valueOf(faker.number().numberBetween(1, 10000)));
+        public static CardInfo getFirstCardInfo() {
+            return new CardInfo("5559 0000 0000 0001", "92df3f1c-a033-48e6-8390-206f6b1f56c0");
         }
 
+        public static CardInfo getSecondCardInfo() {
+            return new CardInfo("5559 0000 0000 0002", "0f3f5c2a-249e-4c3d-8287-09f7a039391d");
+        }
+
+
+        public static int generationValidAmount(int balance) {
+            return new Random().nextInt(balance) + 1;
+        }
     }
 
 
