@@ -16,7 +16,7 @@ public class TransferPage {
     private final SelenideElement fromInput = $("[data-test-id=\"from\"] input");
     private final SelenideElement transferButton = $("[data-test-id=\"action-transfer\"]");
 
-    public DashboardPage validTransfer(DataHelper.CardInfo cardInfo, String amountToTransfer){
+    public DashboardPage validTransfer(DataHelper.CardInfo cardInfo, String amountToTransfer) {
         makeTransfer(cardInfo, amountToTransfer);
         return new DashboardPage();
     }
